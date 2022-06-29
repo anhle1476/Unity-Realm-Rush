@@ -10,7 +10,7 @@ public class EnemyMoverCoroutine : MonoBehaviour
     [SerializeField]
     private List<Waypoint> path = new List<Waypoint>();
 
-    private readonly WaitForSeconds waiter = new WaitForSeconds(1);
+    private readonly YieldInstruction _followPathWaiter = new WaitForEndOfFrame();
     
     private void Start()
     {
@@ -22,8 +22,18 @@ public class EnemyMoverCoroutine : MonoBehaviour
         foreach (Waypoint waypoint in path)
         {
             Vector3 waypointPos = waypoint.transform.position;
-            transform.position = new Vector3(waypointPos.x, transform.position.y, waypointPos.z);
-            yield return waiter;
+            Vector3 startPos = transform.position;
+            Vector3 endPos = new Vector3(waypointPos.x, transform.position.y, waypointPos.z);
+
+            var travelPercent = 0f;
+
+            while (travelPercent < 1f)
+            {
+                travelPercent += Time.deltaTime;
+                transform.position = Vector3.Lerp(startPos, endPos, travelPercent);
+                yield return _followPathWaiter;
+            }
+            
         }
     }
 }
