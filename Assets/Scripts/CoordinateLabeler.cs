@@ -2,36 +2,39 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Use this instead of ExecuteInEditMode since it's being phased out (https://docs.unity3d.com/ScriptReference/ExecuteInEditMode.html)
 [ExecuteAlways] 
 public class CoordinateLabeler : MonoBehaviour
 {
-    [SerializeField]
-    private int gridSize = 10;
-    
+    private const int GRID_SIZE = 10;
+
     private TextMeshPro _label;
 
     private void Awake()
     {
         _label = GetComponent<TextMeshPro>();
-        UpdateCoordinate();
+        
+        UpdatePropsByTileCoordinate();
     }
 
     private void Update()
     {
-        if (!Application.isPlaying) return;
-        
-        UpdateCoordinate();
+        if (Application.isPlaying) return;
+
+        UpdatePropsByTileCoordinate();
     }
 
-    private void UpdateCoordinate()
+    private void UpdatePropsByTileCoordinate()
     {
-        var position = transform.parent.position;
-        var xPos = position.x / gridSize;
-        var yPos = position.z / gridSize;
-
-        _label.text = xPos + "," + yPos;
+        var tile = transform.parent;
+        var tilePosition = tile.position;
+        
+        var coordinate = new Vector2(tilePosition.x, tilePosition.z) / GRID_SIZE;
+        
+        _label.text = coordinate.x + "," + coordinate.y;
+        tile.name = coordinate.ToString("0");
     }
 }
