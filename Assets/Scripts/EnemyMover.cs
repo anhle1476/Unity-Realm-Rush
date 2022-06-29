@@ -9,7 +9,7 @@ public class EnemyMover : MonoBehaviour
     [SerializeField]
     private float speed = 3f;
     [SerializeField]
-    private List<Waypoint> path = new List<Waypoint>();
+    private List<Waypoint> path;
     
     #region utils methods
 
