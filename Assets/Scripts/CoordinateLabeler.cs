@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[ExecuteInEditMode]
+// Use this instead of ExecuteInEditMode since it's being phased out (https://docs.unity3d.com/ScriptReference/ExecuteInEditMode.html)
+[ExecuteAlways] 
 public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField]
@@ -15,9 +16,17 @@ public class CoordinateLabeler : MonoBehaviour
     private void Awake()
     {
         _label = GetComponent<TextMeshPro>();
+        UpdateCoordinate();
     }
 
     private void Update()
+    {
+        if (!Application.isPlaying) return;
+        
+        UpdateCoordinate();
+    }
+
+    private void UpdateCoordinate()
     {
         var position = transform.parent.position;
         var xPos = position.x / gridSize;
