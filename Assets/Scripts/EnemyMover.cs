@@ -48,8 +48,9 @@ public class EnemyMover : MonoBehaviour
         Vector3 waypointPos = waypoint.transform.position;
         Vector3 targetPos = new Vector3(waypointPos.x, currentPos.y, waypointPos.z);
 
+        transform.LookAt(targetPos);
         transform.position = Vector3.MoveTowards(currentPos, targetPos, Time.deltaTime * speed);
-
+        
         return transform.position == targetPos;
     }
 
