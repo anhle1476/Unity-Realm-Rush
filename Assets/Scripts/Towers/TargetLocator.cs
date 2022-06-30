@@ -89,10 +89,12 @@ namespace Towers
             {
                 FindNewTarget();
             }
-            
-            if (HasTarget == false) return;
 
-            TargetAiming();
+            if (HasTarget)
+            {
+                TargetAiming();
+            }
+
         }
 
         #endregion

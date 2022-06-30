@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475607030431557976}
   - component: {fileID: 6096381128449414503}
+  - component: {fileID: 6249716012658167672}
   m_Layer: 0
   m_Name: Ballista
   m_TagString: Untagged
@@ -49,6 +50,19 @@ MonoBehaviour:
   range: 30
   rotationParts:
   - {fileID: 8781140455578836398}
+--- !u!114 &6249716012658167672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28379760439693823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d125860e0a9c4efe982df58bf2bb4d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 1367743353416227451}
 --- !u!1 &5346491761860430001
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +75,7 @@ GameObject:
   - component: {fileID: 1367743353416227451}
   - component: {fileID: 5005309120883985045}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +113,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
