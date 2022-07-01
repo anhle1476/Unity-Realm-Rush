@@ -21,9 +21,10 @@ namespace Enemies
 
         private Waypoint _currentWaypoint;
         
-        private void Start()
+        private void OnEnable()
         {
-            _currentWaypoint = FindObjectOfType<PathManager>()?.StartWaypoint;
+            _currentWaypoint = FindObjectOfType<PathManager>().StartWaypoint;
+            transform.position = _currentWaypoint.transform.position;
             StartFollowNewPath();
         }
 
@@ -80,7 +81,7 @@ namespace Enemies
                 }
             }
             
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

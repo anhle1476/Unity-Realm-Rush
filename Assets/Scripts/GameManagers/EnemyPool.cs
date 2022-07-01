@@ -15,8 +15,11 @@ namespace GameManagers
         private GameObject enemyPrefab;
         [SerializeField]
         private float spawnTimer = 2f;
-
-
+        [SerializeField]
+        private bool spawnEnemy = true;
+        [SerializeField]
+        private int initialPoolSize = 20;
+        
         public IEnumerable<Enemy> Enemies => enemies;
 
         private PathManager _pathManager;
@@ -26,17 +29,50 @@ namespace GameManagers
             // initialize the list with all available enemies on the scene
             enemies = FindObjectsOfType<Enemy>()?.ToList() ?? new List<Enemy>();
             _pathManager = FindObjectOfType<PathManager>();
+
+            PopulateEnemyPool();
+            
             StartCoroutine(SpawnEnemy());
+        }
+
+        private void PopulateEnemyPool()
+        {
+            while (enemies.Count() < initialPoolSize)
+            {
+                InstantiateNewEnemyInPool();
+            }
+        }
+
+        private GameObject InstantiateNewEnemyInPool()
+        {
+            GameObject newEnemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity, transform);
+            newEnemy.SetActive(false);
+            
+            enemies.Add(newEnemy.GetComponent<Enemy>());
+            return newEnemy;
+        }
+
+        private void ActivateEnemyInPool()
+        {
+            Enemy inactivateEnemy = enemies.FirstOrDefault(enemy => enemy.gameObject.activeInHierarchy == false);
+            if (inactivateEnemy)
+            {
+                inactivateEnemy.gameObject.SetActive(true);
+            }
+            else
+            {
+                InstantiateNewEnemyInPool().SetActive(true);
+            }
         }
 
         private IEnumerator SpawnEnemy()
         {
             while (true)
             {
-                Vector3 spawnPosition = _pathManager.StartWaypoint.transform.position;
-                GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-
-                enemies.Add(newEnemy.GetComponent<Enemy>());
+                if (spawnEnemy)
+                {
+                    ActivateEnemyInPool();
+                }
 
                 yield return new WaitForSeconds(spawnTimer);
             }

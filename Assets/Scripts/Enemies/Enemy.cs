@@ -11,28 +11,28 @@ namespace Enemies
         private int maxHealth = 5;
 
         private int _health;
-        
-        public int Heath
+
+        private int Heath
         {
             get => _health;
-            protected set => _health = Mathf.Clamp(value, 0, maxHealth);
+            set => _health = Mathf.Clamp(value, 0, maxHealth);
         }
 
         public bool IsDead => Heath <= 0;
 
-        public virtual void ResetStats()
+        protected virtual void ResetStats()
         {
             Heath = maxHealth;
         }
 
-        public void Hit(int damage)
+        private void Hit(int damage)
         {
             if (IsDead) return;
             
             Heath -= damage;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             ResetStats();
         }
@@ -47,7 +47,7 @@ namespace Enemies
 
             if (IsDead)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
 
