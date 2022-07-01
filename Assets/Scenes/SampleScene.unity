@@ -1751,6 +1751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
+  enemyPrefab: {fileID: 468304556164788688, guid: de7cbe1c33556ae47b77069bd0a83ba3, type: 3}
+  spawnTimer: 2
 --- !u!4 &803519246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5754929164651709373, guid: 2d8c9dc8933309e468f7f1d12ad0268f, type: 3}

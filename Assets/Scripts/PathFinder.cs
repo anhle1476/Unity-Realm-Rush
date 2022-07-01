@@ -26,10 +26,6 @@ public class PathFinder
         
     private IDictionary<string, Waypoint> _waypointMap;
     private Waypoint _target;
-    /// <summary>
-    /// ! max recursive depth to prevent stack overflow
-    /// </summary>
-    private int maxDepth = 1000;
         
     private readonly IDictionary<string, ICollection<Waypoint>> _cachedPath = new Dictionary<string, ICollection<Waypoint>>();
 

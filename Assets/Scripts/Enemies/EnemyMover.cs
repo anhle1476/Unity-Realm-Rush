@@ -76,8 +76,11 @@ namespace Enemies
                 {
                     _currentWaypoint = waypoint;
                     path.RemoveAt(0);
+                    
                 }
             }
+            
+            Destroy(gameObject);
         }
     }
 }
