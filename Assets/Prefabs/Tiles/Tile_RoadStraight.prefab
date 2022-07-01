@@ -8,12 +8,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4120550331918312760, guid: c236356e371b57b41a052ad754dd341e, type: 3}
+      propertyPath: isPath
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120550331918312760, guid: c236356e371b57b41a052ad754dd341e, type: 3}
+      propertyPath: isRunnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4120550331918312760, guid: c236356e371b57b41a052ad754dd341e, type: 3}
       propertyPath: isPlaceable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604651801973025823, guid: c236356e371b57b41a052ad754dd341e, type: 3}
       propertyPath: m_text
       value: 0,0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604651801973025823, guid: c236356e371b57b41a052ad754dd341e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604651801973025823, guid: c236356e371b57b41a052ad754dd341e, type: 3}
+      propertyPath: m_fontColor.a
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4604651802592599320, guid: c236356e371b57b41a052ad754dd341e, type: 3}
       propertyPath: m_RootOrder

@@ -8,8 +8,6 @@ namespace Tiles
     [ExecuteAlways] 
     public class CoordinateLabeler : MonoBehaviour
     {
-        private const int GRID_SIZE = 10;
-
         private TextMeshPro _label;
         private Waypoint _waypoint;
 
@@ -46,10 +44,10 @@ namespace Tiles
             Transform tile = transform.parent;
             Vector3 tilePosition = tile.position;
         
-            Vector2 coordinate = new Vector2(tilePosition.x, tilePosition.z) / GRID_SIZE;
+            Vector2 coordinate = new Vector2(tilePosition.x, tilePosition.z) / GlobalConstant.GRID_SIZE;
         
             _label.text = coordinate.x + "," + coordinate.y;
-            tile.name = coordinate.ToString("0");
+            tile.name = Waypoint.NameByPosition(tilePosition);
         }
 
         private void ColorCoordinate()
